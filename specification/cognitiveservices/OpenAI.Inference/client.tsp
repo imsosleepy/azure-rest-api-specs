@@ -41,4 +41,6 @@ interface OpenAIClient {
   generateSpeechFromText is Azure.OpenAI.generateSpeechFromText;
 
   getEmbeddings is Azure.OpenAI.getEmbeddings;
+
+  createBatch is Azure.OpenAI.createBatch;
 }
