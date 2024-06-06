@@ -1,0 +1,37 @@
+parameters:
+  "service-dir":
+    default: "sdk/openai"
+  "dependencies":
+    default: ""
+emit:
+  - "@azure-tools/typespec-autorest"
+  - "@typespec/openapi3"
+linter:
+  extends:
+    - "@azure-tools/typespec-azure-rulesets/data-plane"
+options:
+  "@azure-tools/typespec-autorest":
+    azure-resource-provider-folder: "data-plane"
+    emitter-output-dir: "{project-root}/../"
+    output-file: "data-plane/OpenAI/OpenApiV2/{version-status}/{version}/generated.json"
+    examples-directory: "{project-root}/examples"
+    omit-unreachable-types: true
+  "@typespec/openapi3":
+    emitter-output-dir: "{project-root}/../"
+    output-file: "data-plane/OpenAI/OpenApiV3/{version}/generated.yaml"
+  "@azure-tools/typespec-java":
+    package-dir: "azure-ai-openai"
+    namespace: "com.azure.ai.openai"
+    partial-update: true
+    enable-sync-stack: true
+    generate-tests: false
+    custom-types-subpackage: "implementation.models"
+    flavor: azure
+  "@azure-tools/typespec-ts":
+    package-dir: "openai"
+    generateMetadata: false
+    generateTest: false
+    isModularLibrary: true
+    packageDetails:
+      name: "@azure/openai"
+    flavor: azure
