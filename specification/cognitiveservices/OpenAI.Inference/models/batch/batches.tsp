@@ -10,7 +10,7 @@ using Azure.ClientGenerator.Core;
 
 namespace Azure.OpenAI;
 
-@added(ServiceApiVersions.v2024_06_01_Preview)
+@added(ServiceApiVersions.v2024_07_01_Preview)
 @doc("The OpenAI APIs supported by the Batch API")
 union EndPointType {
   string,
@@ -32,7 +32,7 @@ union EndPointType {
   completions: "/v1/completions"
 }
 
-@added(ServiceApiVersions.v2024_06_01_Preview)
+@added(ServiceApiVersions.v2024_07_01_Preview)
 @doc("Creates and executes a batch from an uploaded file of requests")
 model BatchOptions {
   @doc("""
@@ -49,7 +49,7 @@ model BatchOptions {
   completionWindow: "24h";
 }
 
-@added(ServiceApiVersions.v2024_06_01_Preview)
+@added(ServiceApiVersions.v2024_07_01_Preview)
 @doc("Represents the response value of a batch API. This object is included in all response values for the create, retrieve, cancel, and list batch APIs.")
 model BatchesResponse {
   @doc("The ID of the requested batch")
@@ -96,12 +96,5 @@ model BatchesResponse {
     completed: int32;
     @doc("Number of failed requests")
     failed: int32;
-  };
-  @doc("Additional metadata for the batch")
-  metadata: {
-    @doc("The customer ID")
-    customerId: string;
-    @doc("Description of the batch")
-    batchDescription: string;
   };
 }

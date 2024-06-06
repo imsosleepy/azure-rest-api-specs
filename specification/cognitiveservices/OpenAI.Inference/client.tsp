@@ -42,5 +42,8 @@ interface OpenAIClient {
 
   getEmbeddings is Azure.OpenAI.getEmbeddings;
 
-  createBatch is Azure.OpenAI.createBatch;
+  createBatch is Azure.OpenAI.createBatches;
+  getBatches is Azure.OpenAI.getBatches;
+  cancelBatches is Azure.OpenAI.cancelBatches;
+  listBatches is Azure.OpenAI.listBatches;
 }
