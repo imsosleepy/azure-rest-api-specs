@@ -89,10 +89,7 @@
           "200": {
             "description": "A list of batch jobs.",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/BatchesResponse"
-              }
+              "$ref": "#/definitions/ListBatchesResponse"
             }
           }
         }
@@ -1839,6 +1836,14 @@
           "x-ms-enum": {
             "modelAsString": false
           }
+        },
+        "metadata": {
+          "type": "object",
+          "description": "A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length.",
+          "x-nullable": true,
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -1853,11 +1858,11 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "The ID of the requested batch"
+          "description": "The ID of the requested batch."
         },
         "object": {
           "type": "string",
-          "description": "The type of the response object",
+          "description": "The type of the response object, which is always 'batch'.",
           "enum": [
             "batch"
           ],
@@ -1867,102 +1872,97 @@
         },
         "endpoint": {
           "type": "string",
-          "description": "The API endpoint used for the batch"
+          "description": "The API endpoint used for the batch."
         },
         "errors": {
           "type": "string",
-          "description": "Any errors that occurred during the processing of the batch"
+          "description": "Any errors that occurred during the processing of the batch."
         },
         "inputFileId": {
           "type": "string",
-          "description": "The ID of the input file"
+          "description": "The ID of the input file."
         },
         "completionWindow": {
           "type": "string",
-          "description": "The completion window for the batch"
+          "description": "The completion window for the batch."
         },
         "status": {
           "type": "string",
-          "description": "The status of the batch"
+          "description": "The status of the batch."
         },
         "outputFileId": {
           "type": "string",
-          "description": "The ID of the output file"
+          "description": "The ID of the output file."
         },
         "errorFileId": {
           "type": "string",
-          "description": "The ID of the error file"
+          "description": "The ID of the error file."
         },
         "createdAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch was created"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch was created.",
+          "x-nullable": true
         },
         "inProgressAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch started processing"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch started processing.",
+          "x-nullable": true
         },
         "expiresAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch expires"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch expires.",
+          "x-nullable": true
         },
         "finalizingAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch was finalizing"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch started finalizing.",
+          "x-nullable": true
         },
         "completedAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch was completed"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch was completed.",
+          "x-nullable": true
         },
         "failedAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch failed"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch failed.",
+          "x-nullable": true
         },
         "expiredAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch expired"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch expired.",
+          "x-nullable": true
         },
         "cancellingAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch was being cancelled"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch started cancelling.",
+          "x-nullable": true
         },
         "cancelledAt": {
           "type": "integer",
-          "format": "int32",
-          "description": "The timestamp when the batch was cancelled"
+          "format": "unixtime",
+          "description": "The Unix timestamp (in seconds) for when the batch was cancelled.",
+          "x-nullable": true
         },
         "requestCounts": {
+          "$ref": "#/definitions/RequestCounts",
+          "description": "The request counts for the batch."
+        },
+        "metadata": {
           "type": "object",
-          "description": "The request counts for the batch",
-          "properties": {
-            "total": {
-              "type": "integer",
-              "format": "int32",
-              "description": "Total number of requests"
-            },
-            "completed": {
-              "type": "integer",
-              "format": "int32",
-              "description": "Number of completed requests"
-            },
-            "failed": {
-              "type": "integer",
-              "format": "int32",
-              "description": "Number of failed requests"
-            }
-          },
-          "required": [
-            "total",
-            "completed",
-            "failed"
-          ]
+          "description": "A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length.",
+          "x-nullable": true,
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -3807,6 +3807,48 @@
         "data"
       ]
     },
+    "ListBatchesResponse": {
+      "type": "object",
+      "description": "Represents the response value of a batch API. This object is included in all response values for the create, retrieve, cancel, and list batch APIs.",
+      "properties": {
+        "object": {
+          "type": "string",
+          "description": "The type of the response object, which is always 'list'.",
+          "enum": [
+            "list"
+          ],
+          "x-ms-enum": {
+            "modelAsString": false
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "A list of batch response objects.",
+          "items": {
+            "$ref": "#/definitions/BatchesResponse"
+          }
+        },
+        "firstId": {
+          "type": "string",
+          "description": "The ID of the first batch in the list."
+        },
+        "lastId": {
+          "type": "string",
+          "description": "The ID of the last batch in the list."
+        },
+        "hasMore": {
+          "type": "boolean",
+          "description": "A boolean indicating whether there are more batches to retrieve."
+        }
+      },
+      "required": [
+        "object",
+        "data",
+        "firstId",
+        "lastId",
+        "hasMore"
+      ]
+    },
     "MaxTokensFinishDetails": {
       "type": "object",
       "description": "A structured representation of a stop reason that signifies a token limit was reached before the model could naturally\ncomplete.",
@@ -4240,6 +4282,32 @@
       },
       "required": [
         "content_fields"
+      ]
+    },
+    "RequestCounts": {
+      "type": "object",
+      "description": "The request counts for the batch",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The total number of requests in the batch."
+        },
+        "completed": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of requests that were successfully completed."
+        },
+        "failed": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of requests that failed."
+        }
+      },
+      "required": [
+        "total",
+        "completed",
+        "failed"
       ]
     },
     "SpeechGenerationOptions": {

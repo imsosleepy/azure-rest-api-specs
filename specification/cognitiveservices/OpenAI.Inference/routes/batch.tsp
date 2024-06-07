@@ -64,4 +64,4 @@ op listBatches(
   @minValue(1)
   @maxValue(100)
   limit?: int32 | 20
-): BatchesResponse[];
+): ListBatchesResponse;
