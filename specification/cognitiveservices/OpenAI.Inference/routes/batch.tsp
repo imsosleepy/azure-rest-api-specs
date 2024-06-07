@@ -16,6 +16,9 @@ namespace Azure.OpenAI;
  * @param batchOptions The details for the batch job.
  * @returns Information about the batch job.
  */
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "not yet an Azure operation"
+#suppress "@azure-tools/typespec-azure-core/no-operation-id" "non-standard operations"
+#suppress "@azure-tools/typespec-azure-core/operation-missing-api-version" "not yet versioned"
 @post
 @route("/batches")
 @added(ServiceApiVersions.v2024_07_01_Preview)
@@ -30,6 +33,9 @@ op createBatches(
  * @param batchId The ID of the batch to retrieve information about.
  * @returns The requested information about the specified batch job.
  */
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "not yet an Azure operation"
+#suppress "@azure-tools/typespec-azure-core/no-operation-id" "non-standard operations"
+#suppress "@azure-tools/typespec-azure-core/operation-missing-api-version" "not yet versioned"
 @get
 @route("/batches/{batchId}")
 @added(ServiceApiVersions.v2024_07_01_Preview)
@@ -42,6 +48,9 @@ op getBatches(
  * @param batchId The ID of the batch to cancel.
  * @returns Updated information about the batch job.
  */
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "not yet an Azure operation"
+#suppress "@azure-tools/typespec-azure-core/no-operation-id" "non-standard operations"
+#suppress "@azure-tools/typespec-azure-core/operation-missing-api-version" "not yet versioned"
 @post
 @route("/batches/{batchId}/cancel")
 @added(ServiceApiVersions.v2024_07_01_Preview)
@@ -55,6 +64,9 @@ op cancelBatches(
  * @param limit A limit on the number of objects to be returned. The limit can range between 1 and 100, with a default of 20.
  * @returns A list of batch jobs.
  */
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "not yet an Azure operation"
+#suppress "@azure-tools/typespec-azure-core/no-operation-id" "non-standard operations"
+#suppress "@azure-tools/typespec-azure-core/operation-missing-api-version" "not yet versioned"
 @get
 @route("/batches")
 @added(ServiceApiVersions.v2024_07_01_Preview)
